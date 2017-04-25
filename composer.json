@@ -1,0 +1,23 @@
+{
+    "name": "linkorb/lib-peri22x",
+    "description": "A library of models for wrting Peri22x XML.",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "LinkORB",
+            "email": "engineering@linkorb.com",
+            "role": "Development"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Peri22x\\Meta\\": "meta/",
+            "Peri22x\\": "lib/"
+        }
+    },
+    "require-dev": {
+        "memio/memio": "^1.0",
+        "symfony/var-dumper": "^3.2"
+    }
+}
