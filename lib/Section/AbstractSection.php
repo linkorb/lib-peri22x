@@ -80,14 +80,14 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
         return $attr;
     }
 
-    public function addValue($conceptName, $value)
+    public function addValue($conceptName, $value, $extraAttributes = [])
     {
         if (!in_array($conceptName, $this->permittedConcepts)) {
             throw new SectionError(
                 "The concept \"{$conceptName}\" is not permitted for Section \"{$this->type}\"."
             );
         }
-        $this->values[] = $this->valueFactory->create($conceptName, $value);
+        $this->values[] = $this->valueFactory->create($conceptName, $value, $extraAttributes);
     }
 
     /**

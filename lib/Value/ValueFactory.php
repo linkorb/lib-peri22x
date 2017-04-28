@@ -10,8 +10,8 @@ class ValueFactory
      * @param string $value
      * @return \Peri22x\Value\Value
      */
-    public function create($conceptName, $value)
+    public function create($conceptName, $value, $extraAttributes = [])
     {
-        return new Value($conceptName, $value);
+        return new Value($conceptName, $value, $extraAttributes);
     }
 }

@@ -4,6 +4,7 @@ namespace Peri22x\Value;
 
 use DOMDocument;
 
+use Peri22x\XmlNodeError;
 use Peri22x\XmlNodeInterface;
 
 /**
@@ -12,20 +13,38 @@ use Peri22x\XmlNodeInterface;
 class Value implements XmlNodeInterface
 {
     private $concept;
+    private $extraAttributes = [];
+    private $permittedAttributes = ['repeat'];
     private $value;
 
-    public function __construct($concept, $value)
+    public function __construct($concept, $value, $extraAttributes = [])
     {
         $this->concept = $concept;
         $this->value = $value;
+        $this->setExtraAttributes($extraAttributes);
     }
 
     public function getAttributes()
     {
-        return [
-            'concept' => $this->concept,
-            'value' => $this->value,
-        ];
+        return array_merge(
+            [
+                'concept' => $this->concept,
+                'value' => $this->value,
+            ],
+            $this->extraAttributes
+        );
+    }
+
+    public function setExtraAttributes(array $extraAttributes)
+    {
+        foreach ($extraAttributes as $name => $value) {
+            if (!in_array($name, $this->permittedAttributes)) {
+                throw new XmlNodeError(
+                    "The attribute named \"{$name}\" is not permitted."
+                );
+            }
+            $this->extraAttributes[$name] = $value;
+        }
     }
 
     /**
