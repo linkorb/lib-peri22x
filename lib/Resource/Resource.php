@@ -4,6 +4,7 @@ namespace Peri22x\Resource;
 
 use DOMDocument;
 
+use Peri22x\Attachment\AttachmentInterface;
 use Peri22x\Section\SectionInterface;
 use Peri22x\XmlNodeInterface;
 
@@ -13,6 +14,10 @@ use Peri22x\XmlNodeInterface;
 class Resource implements XmlNodeInterface
 {
     /**
+     * @var \Peri22x\Attachment\AttachmentInterface[]
+     */
+    private $attachments = [];
+    /**
      * @var \Peri22x\Section\SectionInterface[]
      */
     private $sections = [];
@@ -21,6 +26,33 @@ class Resource implements XmlNodeInterface
     public function __construct($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return \Peri22x\Attachment\AttachmentInterface[]
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param \Peri22x\Attachment\AttachmentInterface $attachment
+     */
+    public function addAttachment(AttachmentInterface $attachment)
+    {
+        $this->attachments[] = $attachment;
+        if (!$attachment->hasId()) {
+            $attachment->setId(sizeof($this->attachments));
+        }
+    }
+
+    /**
+     * @param array $attachments
+     */
+    public function setAttachments(array $attachments)
+    {
+        $this->attachments = $attachments;
     }
 
     /**
@@ -36,11 +68,10 @@ class Resource implements XmlNodeInterface
      */
     public function addSection(SectionInterface $section)
     {
-        $nextId = 1 + sizeof($this->sections);
-        if (! $section->hasId()) {
-            $section->setId($nextId);
-        }
         $this->sections[] = $section;
+        if (!$section->hasId()) {
+            $section->setId(sizeof($this->sections));
+        }
     }
 
     /**
@@ -57,8 +88,8 @@ class Resource implements XmlNodeInterface
     }
 
     /**
-     * Return an XML "resource" Element, replete with a child "sections" element
-     * and descendant elements.
+     * Return an XML "resource" Element, replete with children "sections" and
+     * "attachments" elements and their descendant elements.
      *
      * @param \DOMDocument $doc
      * @return \DOMElement
@@ -74,6 +105,11 @@ class Resource implements XmlNodeInterface
             $sectionsElem->appendChild($s->toXmlNode($doc));
         }
         $resourceElem->appendChild($sectionsElem);
+        $attachmentsElem = $doc->createElement('attachments');
+        foreach ($this->getAttachments() as $a) {
+            $attachmentsElem->appendChild($a->toXmlNode($doc));
+        }
+        $resourceElem->appendChild($attachmentsElem);
         return $resourceElem;
     }
 }
