@@ -61,4 +61,9 @@ class Value implements XmlNodeInterface
         }
         return $valueElem;
     }
+
+    public function __toString()
+    {
+        return $this->value === null ? '' : (string) $this->value;
+    }
 }

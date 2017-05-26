@@ -4,6 +4,7 @@ namespace Peri22x\Section;
 
 use DOMDocument;
 
+use Peri22x\Value\Value;
 use Peri22x\Value\ValueFactory;
 use Peri22x\XmlNodeInterface;
 
@@ -23,6 +24,7 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
 
     protected $permittedConcepts = [];
     protected $values = [];
+    protected $valuesByConcept = [];
     protected $valueFactory;
 
     public function __construct(ValueFactory $valueFactory, $type)
@@ -89,12 +91,32 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
                 "The concept \"{$conceptName}\" is not permitted for Section \"{$this->type}\"."
             );
         }
-        $this->values[] = $this->valueFactory->create($conceptName, $value, $extraAttributes);
+        $val = $this->valueFactory->create($conceptName, $value, $extraAttributes);
+        $this->values[] = $val;
+        $this->recordValueByConcept($val, $conceptName);
     }
 
     public function getValues()
     {
         return $this->values;
+    }
+
+    public function hasValue($concept)
+    {
+        return array_key_exists($concept, $this->valuesByConcept);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * This implementation returns only the first value of the given concept.
+     */
+    public function getValue($concept)
+    {
+        if (!array_key_exists($concept, $this->valuesByConcept)) {
+            return null;
+        }
+        return $this->valuesByConcept[$concept][0];
     }
 
     /**
@@ -114,5 +136,13 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
             $sectionElem->appendChild($v->toXmlNode($doc));
         }
         return $sectionElem;
+    }
+
+    private function recordValueByConcept(Value $value, $conceptName)
+    {
+        if (!isset($this->valuesByConcept[$conceptName])) {
+            $this->valuesByConcept[$conceptName] = [];
+        }
+        $this->valuesByConcept[$conceptName][] = $value;
     }
 }

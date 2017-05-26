@@ -67,4 +67,20 @@ interface SectionInterface
      * @return \Peri22x\Value\Value[]
      */
     public function getValues();
+
+    /**
+     * Determine whether the Section has a Value of the given concept name.
+     *
+     * @param string
+     * @return bool
+     */
+    public function hasValue($concept);
+
+    /**
+     * Get a Value of the given concept name.
+     *
+     * @param string
+     * @return null|\Peri22x\Value\Value
+     */
+    public function getValue($concept);
 }
