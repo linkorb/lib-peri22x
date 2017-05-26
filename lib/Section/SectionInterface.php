@@ -54,6 +54,11 @@ interface SectionInterface
     public function hasId();
 
     /**
+     * @return string
+     */
+    public function getType();
+
+    /**
      * @return []
      */
     public function getAttributes();

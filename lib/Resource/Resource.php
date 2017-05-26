@@ -21,6 +21,7 @@ class Resource implements XmlNodeInterface
      * @var \Peri22x\Section\SectionInterface[]
      */
     private $sections = [];
+    private $sectionsByType = [];
     private $type;
 
     public function __construct($type)
@@ -72,14 +73,34 @@ class Resource implements XmlNodeInterface
         if (!$section->hasId()) {
             $section->setId(sizeof($this->sections));
         }
+        $this->recordSectionByType($section, $section->getType());
     }
 
     /**
-     * @param array $sections
+     * Determine whether the Resource has a Section of the given type name.
+     *
+     * @param string $type
+     * @return bool
      */
-    public function setSections(array $sections)
+    public function hasSection($type)
     {
-        $this->sections = $sections;
+        return array_key_exists($type, $this->sectionsByType);
+    }
+
+    /**
+     * Get a Section of the given type name.
+     *
+     * This implementation returns only the first Section of the given type.
+     *
+     * @param string $type
+     * @return null|\Peri22x\Section\SectionInterface
+     */
+    public function getSection($type)
+    {
+        if (!array_key_exists($type, $this->sectionsByType)) {
+            return null;
+        }
+        return $this->sectionsByType[$type][0];
     }
 
     public function getAttributes()
@@ -111,5 +132,13 @@ class Resource implements XmlNodeInterface
         }
         $resourceElem->appendChild($attachmentsElem);
         return $resourceElem;
+    }
+
+    private function recordSectionByType(SectionInterface $section, $type)
+    {
+        if (!isset($this->sectionsByType[$type])) {
+            $this->sectionsByType[$type] = [];
+        }
+        $this->sectionsByType[$type][] = $section;
     }
 }

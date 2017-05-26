@@ -56,9 +56,11 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
         return $this->id !== null;
     }
 
-    /**
-     * @return []
-     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
     public function getAttributes()
     {
         $attr = [];
@@ -90,9 +92,6 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
         $this->values[] = $this->valueFactory->create($conceptName, $value, $extraAttributes);
     }
 
-    /**
-     * @return \Peri22x\Value\Value[]
-     */
     public function getValues()
     {
         return $this->values;
