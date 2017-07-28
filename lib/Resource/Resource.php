@@ -30,6 +30,16 @@ class Resource implements XmlNodeInterface
     }
 
     /**
+     * The Type of the Resource, e.g. "hub/dossier".
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * @return \Peri22x\Attachment\AttachmentInterface[]
      */
     public function getAttachments()
