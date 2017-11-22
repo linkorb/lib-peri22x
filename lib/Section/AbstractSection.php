@@ -120,7 +120,7 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
     }
 
     /**
-     * Return an XML "section" Element, replete with a child "resource" element
+     * Return an XML "section" Element, replete with a child "values" element
      * and descendant elements.
      *
      * @param \DOMDocument $doc
@@ -132,8 +132,10 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
         foreach ($this->getAttributes() as $name => $value) {
             $sectionElem->setAttribute($name, $value);
         }
+        $valuesElem = $doc->createElement('values');
+        $sectionElem->appendChild($valuesElem);
         foreach ($this->getValues() as $v) {
-            $sectionElem->appendChild($v->toXmlNode($doc));
+            $valuesElem->appendChild($v->toXmlNode($doc));
         }
         return $sectionElem;
     }
