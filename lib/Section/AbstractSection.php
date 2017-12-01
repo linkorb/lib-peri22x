@@ -84,7 +84,7 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
         return $attr;
     }
 
-    public function addValue($conceptName, $value, $extraAttributes = [])
+    public function addValue($conceptName, $value, array $extraAttributes = [])
     {
         if (!in_array($conceptName, $this->permittedConcepts)) {
             throw new SectionError(
@@ -92,6 +92,18 @@ abstract class AbstractSection implements SectionInterface, XmlNodeInterface
             );
         }
         $val = $this->valueFactory->create($conceptName, $value, $extraAttributes);
+        $this->values[] = $val;
+        $this->recordValueByConcept($val, $conceptName);
+    }
+
+    public function addCdataValue($conceptName, $value, array $extraAttributes = [])
+    {
+        if (!in_array($conceptName, $this->permittedConcepts)) {
+            throw new SectionError(
+                "The concept \"{$conceptName}\" is not permitted for Section \"{$this->type}\"."
+            );
+        }
+        $val = $this->valueFactory->createAsCdata($conceptName, $value, $extraAttributes);
         $this->values[] = $val;
         $this->recordValueByConcept($val, $conceptName);
     }

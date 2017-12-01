@@ -46,7 +46,9 @@ interface SectionInterface
 
     public function setEffectStamp($effectStamp);
 
-    public function addValue($conceptName, $value, $extraAttributes = []);
+    public function addValue($conceptName, $value, array $extraAttributes = []);
+
+    public function addCdataValue($conceptName, $value, array $extraAttributes = []);
 
     /**
      * @return bool

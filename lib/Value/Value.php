@@ -12,10 +12,10 @@ use Peri22x\XmlNodeInterface;
  */
 class Value implements XmlNodeInterface
 {
-    private $concept;
-    private $extraAttributes = [];
-    private $permittedAttributes = ['repeat'];
-    private $value;
+    protected $concept;
+    protected $extraAttributes = [];
+    protected $permittedAttributes = ['repeat'];
+    protected $value;
 
     public function __construct($concept, $value, $extraAttributes = [])
     {
