@@ -70,6 +70,6 @@ class IntakeSection extends AbstractSection
         'peri22-dataelement-20320',
         'peri22-dataelement-20331',
         'peri22-dataelement-82164',
-        'peri22-dataelement-10023'
+        'peri22-dataelement-10023',
     ];
 }

@@ -27,6 +27,6 @@ class ConsultSection extends AbstractSection
         'peri22-dataelement-82106',
         'peri22-dataelement-82107',
         'peri22-dataelement-80745',
-        'peri22-dataelement-80614'
+        'peri22-dataelement-80614',
     ];
 }

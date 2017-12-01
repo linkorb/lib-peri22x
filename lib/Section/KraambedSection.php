@@ -21,6 +21,6 @@ class KraambedSection extends AbstractSection
         'peri22-dataelement-40261',
         'peri22-dataelement-80765',
         'peri22-dataelement-80983',
-        'peri22-dataelement-80642'
+        'peri22-dataelement-80642',
     ];
 }

@@ -56,6 +56,6 @@ class OnderzoekSection extends AbstractSection
         'peri22-dataelement-20614',
         'peri22-dataelement-20615',
         'peri22-dataelement-80616',
-        'peri22-dataelement-80618'
+        'peri22-dataelement-80618',
     ];
 }

@@ -16,6 +16,6 @@ class ZwangerschapSection extends AbstractSection
         'peri22-dataelement-82160',
         'peri22-dataelement-20220',
         'peri22-dataelement-82230',
-        'peri22-dataelement-80625'
+        'peri22-dataelement-80625',
     ];
 }

@@ -10,6 +10,6 @@ class DiagnoseSection extends AbstractSection
         'peri22-dataelement-82274',
         'peri22-dataelement-82275',
         'peri22-dataelement-82277',
-        'peri22-dataelement-82289'
+        'peri22-dataelement-82289',
     ];
 }

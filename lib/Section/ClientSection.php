@@ -43,6 +43,6 @@ class ClientSection extends AbstractSection
         'peri22-dataelement-82036',
         'peri22-dataelement-82037',
         'peri22-dataelement-10810',
-        'peri22x-alert_tekst'
+        'peri22x-alert_tekst',
     ];
 }

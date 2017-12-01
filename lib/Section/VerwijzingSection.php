@@ -32,6 +32,6 @@ class VerwijzingSection extends AbstractSection
         'peri22-dataelement-10801',
         'peri22-dataelement-10807',
         'peri22-dataelement-10804',
-        'peri22-dataelement-20070'
+        'peri22-dataelement-20070',
     ];
 }

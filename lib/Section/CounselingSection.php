@@ -12,6 +12,6 @@ class CounselingSection extends AbstractSection
         'peri22-dataelement-20485',
         'peri22-dataelement-82163',
         'peri22-dataelement-20490',
-        'peri22-dataelement-20495'
+        'peri22-dataelement-20495',
     ];
 }

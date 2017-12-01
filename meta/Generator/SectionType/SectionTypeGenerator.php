@@ -27,7 +27,7 @@ class SectionTypeGenerator
             },
             $this->values
         );
-        return "[\n" . implode(",\n", $s) . "\n    ]";
+        return "[\n" . implode(",\n", $s) . ",\n    ]";
     }
 
     public function getClass()

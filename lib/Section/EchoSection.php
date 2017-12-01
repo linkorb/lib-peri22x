@@ -109,6 +109,6 @@ class EchoSection extends AbstractSection
         'peri22-dataelement-82310',
         'peri22-dataelement-82311',
         'peri22-dataelement-82312',
-        'peri22-dataelement-82227'
+        'peri22-dataelement-82227',
     ];
 }

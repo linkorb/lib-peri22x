@@ -149,6 +149,6 @@ class KindSection extends AbstractSection
         'peri22-dataelement-82138',
         'peri22-dataelement-82139',
         'peri22-dataelement-82141',
-        'peri22-dataelement-82142'
+        'peri22-dataelement-82142',
     ];
 }

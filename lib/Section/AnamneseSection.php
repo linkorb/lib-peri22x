@@ -67,6 +67,6 @@ class AnamneseSection extends AbstractSection
         'peri22-dataelement-80717',
         'peri22-dataelement-80678',
         'peri22-dataelement-80617',
-        'peri22-dataelement-40020'
+        'peri22-dataelement-40020',
     ];
 }

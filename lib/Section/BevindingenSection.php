@@ -28,6 +28,6 @@ class BevindingenSection extends AbstractSection
         'peri22-dataelement-60070',
         'peri22-dataelement-60080',
         'peri22-dataelement-60100',
-        'peri22-dataelement-60030'
+        'peri22-dataelement-60030',
     ];
 }

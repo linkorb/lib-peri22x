@@ -50,6 +50,6 @@ class BaringSection extends AbstractSection
         'peri22-dataelement-80694',
         'peri22-dataelement-40020',
         'peri22-dataelement-82153',
-        'peri22-dataelement-20670'
+        'peri22-dataelement-20670',
     ];
 }
