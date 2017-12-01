@@ -110,5 +110,7 @@ class EchoSection extends AbstractSection
         'peri22-dataelement-82311',
         'peri22-dataelement-82312',
         'peri22-dataelement-82227',
+        'peri22x-echo-conclusie',
+        'peri22x-echo-diagnose',
     ];
 }
