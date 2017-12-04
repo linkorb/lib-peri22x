@@ -18,14 +18,19 @@ class CdataValue extends Value
     }
 
     /**
-     * Return an XML "value" Element with CDATA.
+     * Return an XML "value" Element with CDATA content instead of a "value"
+     * Attribute.
      *
      * @param \DOMDocument $doc
      * @return \DOMElement
      */
     public function toXmlNode(DOMDocument $doc)
     {
-        $valueElem = parent::toXmlNode($doc);
+        $valueElem = $doc->createElement('value');
+        $attr = array_diff_key($this->getAttributes(), ['value' => true]);
+        foreach ($attr as $name => $value) {
+            $valueElem->setAttribute($name, $value);
+        }
         $valueElem->appendChild($doc->createCDATASection($this->data));
         return $valueElem;
     }
