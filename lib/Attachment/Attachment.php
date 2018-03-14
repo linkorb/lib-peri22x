@@ -11,6 +11,7 @@ use Peri22x\XmlNodeInterface;
  */
 class Attachment implements AttachmentInterface, XmlNodeInterface
 {
+    private $filename;
     private $id;
     private $mimeType;
 
@@ -22,6 +23,16 @@ class Attachment implements AttachmentInterface, XmlNodeInterface
     public function setMimeType($mimeType)
     {
         $this->mimeType = $mimeType;
+    }
+
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
     }
 
     public function hasId()
@@ -41,6 +52,9 @@ class Attachment implements AttachmentInterface, XmlNodeInterface
         }
         if (null !== $this->mimeType) {
             $attr['mimeType'] = $this->mimeType;
+        }
+        if (null !== $this->filename) {
+            $attr['filename'] = $this->filename;
         }
 
         return $attr;

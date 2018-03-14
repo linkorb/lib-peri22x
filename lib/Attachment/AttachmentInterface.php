@@ -12,6 +12,16 @@ interface AttachmentInterface
     public function setMimeType($mimeType);
 
     /**
+     * @param string $filename
+     */
+    public function setFilename($filename);
+
+    /**
+     * @return string
+     */
+    public function getFilename();
+
+    /**
      * @return bool
      */
     public function hasId();
